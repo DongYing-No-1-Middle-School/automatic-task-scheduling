@@ -10,9 +10,15 @@ An automated scheduler powered by Python, for classroom. Made with ❤️.
 
 ## How to run
 
-1. Start the daemon.py
-2. Use frontend.py to manage the tasks
-3. Read the [wiki](/DongYing-No-1-Middle-School/automatic-task-scheduling/wiki) for more information
+1. Install modules via pip:
+
+```
+rich
+```
+
+2. Keep daemon.py running (by using systemd/supervisior/...)
+3. Use frontend.py to manage the tasks
+4. Read the [wiki](https://github.com/DongYing-No-1-Middle-School/automatic-task-scheduling/wiki) for more information
 
 ## Future Plans
 
