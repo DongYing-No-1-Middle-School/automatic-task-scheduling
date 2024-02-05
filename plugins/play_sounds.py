@@ -6,6 +6,8 @@ plugin = {
     ]
 }
 
+import win32api
+import win32con
 import pygame
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 from ctypes import cast, POINTER
