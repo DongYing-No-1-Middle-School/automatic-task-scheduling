@@ -8,6 +8,7 @@ from rich.table import Table
 args = os.sys.argv
 
 def print_usage():
+    # Print usage
     print(f"[blue bold]Usage:[/] frontend.py <[purple]args[/]>")
     print(f"")
     print(f"[blue bold]Arguments:[/]")
@@ -17,6 +18,7 @@ def print_usage():
     print(f"  [purple bold]list[/] - List all tasks")
 
 if len(args) == 1:
+    # No arguments provided
     print(f"[red bold]Error:[/red bold] No arguments provided, use [blue bold]frontend.py help[/] for help.")
     exit(1)
 
@@ -25,6 +27,7 @@ if args[1] == "help":
     exit(0)
 elif args[1] == "add":
     if len(args) < 4:
+        # Not enough arguments
         print(f"[red bold]Error:[/red bold] Task details must be provided.")
         print(f"")
         print(f"[blue bold]Usage:[/] frontend.py add <[purple]time[/]> (-p) <[purple]command|plugin[green bold]:[/]args[/]>")
@@ -33,9 +36,11 @@ elif args[1] == "add":
         exit(1)
     time = args[2]
     if len(time) != 5 or time[2] != ":":
+        # Simple time format check
         print(f"[red bold]Error:[/red bold] Invalid time format. Time must be in the format [blue bold]HH:MM[/].")
         exit(1)
     if args[3] == "-p":
+        # Type of task is plugin
         tasktype = "plugin"
         command = " ".join(args[4:])
         executor = command.split(":")[0]
@@ -46,8 +51,10 @@ elif args[1] == "add":
             print(f"[red bold]Error:[/red bold] Executor '{executor}' invaild.")
             exit(1)
     else:
+        # Type of task is command
         command = " ".join(args[3:])
         tasktype = "command"
+    # Print task details
     print(f"[bold]Adding a new task:[/]")
     print(f"  [blue bold]Time:[/] {time}")
     print(f"  [blue bold]Type:[/] {tasktype}")
@@ -65,6 +72,7 @@ elif args[1] == "add":
     exit(0)
 elif args[1] == "remove":
     if len(args) < 3:
+        # Not enough arguments
         print(f"[red bold]Error:[/red bold] Task ID must be provided.")
         print(f"")
         print(f"[blue bold]Usage:[/] frontend.py remove <[purple]id[/]>")
