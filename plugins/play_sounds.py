@@ -6,19 +6,16 @@ plugin = {
     ]
 }
 
-import pyautogui
 import pygame
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 
+def set_volume(volume):
+    win32api.SendMessage(
+        win32con.HWND_BROADCAST, win32con.WM_APPCOMMAND, 0x30292, volume * 0xFFFF // 100)
+
 def play_sounds(FILE_NAME,volume=0.7):
-    actully_volume=100*volume
-    for i in range(50):
-        pyautogui.press('volumedown')
-    for i in range(int(actully_volume/2)):
-        pyautogui.press('volumeup')
-    
     pygame.init()
     devices = AudioUtilities.GetSpeakers()
     interface = devices.Activate(
