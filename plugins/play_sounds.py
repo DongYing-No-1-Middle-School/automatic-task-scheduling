@@ -22,6 +22,8 @@ def play_sounds(FILE_NAME,volume=0.7):
     devices = AudioUtilities.GetSpeakers()
     interface = devices.Activate(
         IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    nowdate = time.strftime('%m%d', time.localtime(time.time()))
+    FILE_NAME = FILE_NAME.replace('{date}', nowdate)
     pygame.mixer.music.load(FILE_NAME)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy():
